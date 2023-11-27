@@ -1,0 +1,162 @@
+<html>
+<head>
+   <script>
+   function check()
+   {
+     if(document.f1.unm.value=="")
+             {
+              alert("Username should not be left blank");
+              document.getElementById('u').focus();
+              return false;
+              }
+     else
+          {
+          s=document.f1.unm.value;
+          for(i=0;i<s.length;i++)
+           {
+              chr=s.charCodeAt(i);              
+              if(!(( chr>=65 && chr<=90 ) || ( chr>=97 && chr<=122 )))
+                {
+                 alert("Username must contain only Alphabets");
+                 document.f1.unm.value=""
+                 document.getElementById('u').focus();
+                 return false;
+                 }
+            }
+           }
+  /* ----------------------------------------------------  */ 
+
+     if(document.f1.pwd.value=="")
+             {
+              alert("Password should not be left blank");
+              document.getElementById('p').focus();
+              return false;
+              }
+  /* ----------------------------------------------------  */ 
+        
+   if(document.getElementById('s0').checked!=true &&             document.getElementById('s1').checked!=true)
+       {
+       alert("Please select Gender");        
+       return false;
+       } 
+
+  /* ----------------------------------------------------  */ 
+
+   if(document.getElementById('c0').checked!=true &&           document.getElementById('c1').checked!=true)
+       {
+       alert("Please select Vehicle");        
+       return false;
+       } 
+
+   if(document.getElementById('c1').checked==true)
+
+   {
+      if(document.f1.cars.selectedIndex==0)
+             {
+              alert("Plz select your Car");
+              return false;
+              }
+   }
+
+   if(document.f1.cv.selectedIndex==-1)
+             {
+              alert("Plz select visited Country");
+              return false;
+              }
+
+   if(document.f1.ftrip.value=="")
+             {
+              alert("Plz Describe your favorite airplane trip");
+              document.f1.ftrip.value==""
+              document.getElementById('ft').focus();
+              return false;
+              }
+
+   s=document.f1.email.value;
+
+   at=s.indexOf('@');
+
+   atat=s.indexOf('@',at+1);
+
+   dot=s.indexOf('.');
+
+   len=s.length;
+
+   adj = s.charAt(at+1);
+   
+   lchar = s.charAt(len-1);
+
+   if(s=="")
+          {
+           alert("Plz enter your Email id");
+           document.getElementById('em').focus();
+           return false;
+          }
+   else
+   {     
+        if(at<1 || dot==-1 || atat!=-1 || (lchar==".") || (adj=="."))
+          {
+           alert("Plz enter valid Email");
+           document.f1.email.value=""
+           document.getElementById('em').focus();
+           return false;
+          }
+   }
+
+   if(document.f1.resume.value=="")
+             {
+              alert("Plz Upload your Resume");
+              document.f1.resume.value==""
+              document.getElementById('res').focus();
+              return false;
+              } 
+    }
+
+   </script>
+</head>
+
+<body>
+
+<form method=POST action=a.php name="f1" onsubmit="return check();">
+
+Username : <input type=text     name=unm id=u> <br>
+Password : <input type=password name=pwd id=p> <br>
+
+Gender: <input type=radio name=gd value=m id=s0>Male
+     <input type=radio name=gd value=f id=s1>Female<br>
+
+Choose your vehicle : 
+<input type=checkbox name=interest id=c0>Bike
+<input type=checkbox name=interest id=c1>Car
+
+<br>
+Choose your Car : 
+         <select name="cars" id="cr">              
+              <option value=""> Plz select </option>
+              <option value="Santro"> Santro</option>
+              <option value="Maruthi"> Maruthi</option>
+              <option value="Wagon-R"> Wagon-R</option>
+           </select>
+         <br>
+
+Which Country you like to visit?<br>        
+    <select multiple size=3 name=cv>         
+         <option value=usa>America
+         <option value=europe>Europe
+         <option value=asia>Asia
+         <option value=australia>Australia   
+         </select>
+         <br>
+
+Describe your favorite Aeroplane trip:<br>
+<textarea name=ftrip rows=5 cols=50 id=ft></textarea>  <br>
+
+E-mail : <input type=text     name=email id=em> <br>
+
+Resume : <input type=file name=resume id=res>  <Br>
+
+<input type=reset name=clear id=c value=Reset>  
+<input type=submit value="Continue">
+</form>
+</body>
+</html>
